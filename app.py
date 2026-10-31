@@ -64,7 +64,8 @@ def readable_date(value):
  except ValueError:return value
 
 def make_pdf(c,rows,old,title):
- fonts=[Path('C:/Windows/Fonts/arial.ttf'),Path('C:/Windows/Fonts/calibri.ttf'),Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')]
+ from matplotlib import font_manager
+ fonts=[Path('C:/Windows/Fonts/arial.ttf'),Path('C:/Windows/Fonts/calibri.ttf'),Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'),Path(font_manager.findfont('DejaVu Sans'))]
  font=next((p for p in fonts if p.exists()),None)
  if not font:raise RuntimeError('Nenalezen font s českou diakritikou.')
  if 'APUnicode12' not in pdfmetrics.getRegisteredFontNames():pdfmetrics.registerFont(TTFont('APUnicode12',str(font)))
